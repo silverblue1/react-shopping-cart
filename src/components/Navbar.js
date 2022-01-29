@@ -13,7 +13,7 @@ const Navbar = ({cart}) => {
   const totalPrice = () => {
     let s = 0;
     for(let i=0; i<cart.length; i++) {
-      s += cart[i].price;
+      s += cart[i].price * cart[i].quantity;
     }
     return s;
   }
