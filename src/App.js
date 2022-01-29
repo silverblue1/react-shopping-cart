@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import Navbar from "./components/Navbar.js";
 
-function App() {
+import ProductGrid from "./components/ProductGrid.js";
+
+import './styles/App.css';
+
+import data from './services/Data.js';
+
+const App = () => {
+  let cart = [];
+
+  const addItemToCart = (id) => {
+    cart.push({...data[id], quantity: 1});
+    console.log(cart);
+  }
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar cart={cart}/>
+      <ProductGrid cart={cart} 
+                   addItemHandler={addItemToCart} 
+                   />
     </div>
   );
 }

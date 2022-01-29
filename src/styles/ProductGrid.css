@@ -1,0 +1,21 @@
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+
+@media screen and (min-width: 300px) and (max-width: 700px) {
+    .product-grid {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+
+@media screen and (min-width: 700px) and (max-width: 900px) {
+    .product-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
