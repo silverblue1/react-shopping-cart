@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import '../styles/Navbar.css';
 
-const Navbar = ({cart}) => {
+const Navbar = ({cart, removeItemFromCartHandler}) => {
 
   const [showCart, setShowCart] = useState(false);
 
@@ -24,12 +24,17 @@ const Navbar = ({cart}) => {
             <button className='cart-btn' onClick={toggleCart}>Cart ({cart.length})</button>  
           </nav>
           <div className={showCart ? 'menu' : 'inactive'}>
-            <h2 class='cart-text'>Cart ({cart.length})</h2>
+            <h2 className='cart-text'>Cart ({cart.length})</h2>
           {
             showCart && cart.length > 0 && 
             cart.map(item => {
               return <div key={item.id} className='cart-item'>
-                {item.name} ({item.quantity}) [{item.price}$] - {item.price*item.quantity}$ 
+                <p>
+                  <span className='cart-item-name'>{item.name}</span> 
+                  <span className='cart-item-qty'>({item.quantity})</span>
+                  <span className='cart-item-price'>Price: {item.price*item.quantity}$</span>
+                  </p> 
+                <button className='remove-item' onClick={() => removeItemFromCartHandler(item.id)}>-</button>
               </div>
             })
           }

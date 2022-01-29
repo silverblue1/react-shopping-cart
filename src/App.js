@@ -34,9 +34,32 @@ const App = () => {
     }
   }
 
+  const removeItemFromCart = (id) => {
+    console.log(id);
+    if(cart.find(item => item.id === id)) {
+      const updatedCart = cart.map(item => {
+          
+          if(item.id === id) {
+            const updatedItem = {
+              ...item,
+              quantity: item.quantity - 1
+            };
+  
+            return updatedItem;
+          }
+  
+          return item;
+      });
+
+      const filterdCart = updatedCart.filter(item => item.quantity >= 1);
+
+      setCart(filterdCart);
+  }
+  }
+
   return (
     <div className="App">
-      <Navbar cart={cart}/>
+      <Navbar cart={cart} removeItemFromCartHandler={removeItemFromCart}/>
       <ProductGrid cart={cart} 
                    addItemHandler={addItemToCart} 
                    />
